@@ -5,15 +5,17 @@ import PrimaryButton from "../../utils/components/primary-button/primary-button"
 import { useEffect, useState } from "react";
 import LoginForm from "./form/login-form";
 import { useNavigate } from "react-router-dom";
+import { UserInterface } from "../../utils/models";
 
 
 interface LoginProps {
   loggedIn: boolean;
-  setLoggedIn: (value: boolean)=> void
+  setLoggedIn: (value: boolean)=> void;
+  setUser: (user: UserInterface) => void;
 }
 
 
-export default function Login({loggedIn, setLoggedIn}: LoginProps) {
+export default function Login({loggedIn, setLoggedIn, setUser}: LoginProps) {
 
   const navigate = useNavigate();
   useEffect (() => {
@@ -44,7 +46,7 @@ export default function Login({loggedIn, setLoggedIn}: LoginProps) {
             Start by login into your account and track every cent that you spend
             and earn.
           </h4>
-          <LoginForm setLoggedIn={setLoggedIn}/>
+          <LoginForm setLoggedIn={setLoggedIn} setUser={setUser}/>
         </div>
       </body>
     </main>

@@ -5,6 +5,7 @@ import { FaLock } from "react-icons/fa6";
 import PrimaryButton from "../../../utils/components/primary-button/primary-button";
 import axiosInstance from "../../../utils/mocks/axios";
 import { useNavigate } from "react-router-dom";
+import { UserInterface } from "../../../utils/models";
 
 const formError = {
   required: "All the fields are required",
@@ -14,9 +15,10 @@ const formError = {
 
 interface LoginFormProps {
   setLoggedIn: (value: boolean) => void;
+  setUser: (user: UserInterface) => void;
 }
 
-export default function LoginForm({ setLoggedIn }: LoginFormProps) {
+export default function LoginForm({ setLoggedIn, setUser }: LoginFormProps) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -59,9 +61,12 @@ export default function LoginForm({ setLoggedIn }: LoginFormProps) {
       })
       .then((response: any) => {
         console.log("Login response:", response.data);
-        if (response) {
+        if (response.data.isLoggedIn) {
           setLoggedIn(true);
+          setUser(response.data.user);
           navigate("dashboard");
+        } else {
+          setErrorFormData(() => formError.wrongEmailOrPassword);
         }
         // Handle success
       })

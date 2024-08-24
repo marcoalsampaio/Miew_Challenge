@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    background-color: #ffffff9f;
+    box-shadow: 0px 2px 5px 1px rgb(154, 154, 154);
+    border-radius: 0.5rem;
+    width: fit-content;
+    padding: 0.5rem;
+}
+
+img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50rem;
+    object-fit: cover;
+}
+
+.nameContainer {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.5rem;
+    justify-content: center;
+    font-size: small;
+}
+
+span {
+    padding-block: 0.25rem;
+}
+
+b {
+    font-size: medium;
+}
