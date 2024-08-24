@@ -8,8 +8,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/mocks/axios";
-import Modal from "../../utils/components/modal/modal";
-import InputComponent from "../../utils/components/input-component/input-component";
+import ExpensesModal from "../expenses/expenses-modal";
 
 interface DashboardProps {
   loggedIn: boolean;
@@ -119,47 +118,8 @@ export default function Dashboard({
           <span onClick={() => nav("history")}>View All</span>
         </div>
       </section>
-
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <h2>New Transaction</h2>
-
-        <div>
-          <InputComponent
-            label="Value"
-            inputType={"number"}
-            inputName={""}
-            inputData={function (name: string, value: string): void {
-              throw new Error("Function not implemented.");
-            }}
-          />
-
-          <label htmlFor="cards">Type</label>
-          <select name="cars" id="cars">
-            <option value="ADD">ADD</option>
-            <option value="SUB">SUB</option>
-          </select>
-        </div>
-
-        <InputComponent
-          label="Name"
-          inputType={"text"}
-          inputName={""}
-          inputData={function (name: string, value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
-
-        <InputComponent
-          label="Date"
-          inputType={"date"}
-          inputName={""}
-          inputData={function (name: string, value: string): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
-
-        <button>Save</button>
-      </Modal>
+        
+        <ExpensesModal isOpen={isModalOpen} closeModal={closeModal}/>
     </>
   );
 }

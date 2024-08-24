@@ -1,4 +1,3 @@
-import userImage from "../../../assets/user_image.jpg";
 import { UserInterface } from "../../models";
 import styles from "./user-info.module.css";
 
@@ -9,7 +8,7 @@ interface UserInfoProps {
 export default function UserInfo({user}: UserInfoProps) {
   return (
     <div className={styles.container}>
-      <img width={100} src={user?.image} />
+      <img width={100} src={user?.image} alt="user"/>
       <div className={styles.nameContainer}>
         <span>
           <b> {user?.name}</b>

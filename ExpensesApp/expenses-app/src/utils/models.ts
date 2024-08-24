@@ -13,4 +13,10 @@ interface UserInterface {
     image: string
 }
 
-export type {TransactionInterface, UserInterface};
+
+interface OptionInterface {
+    value: string;
+    name: string;
+  }
+
+export type {TransactionInterface, UserInterface, OptionInterface};

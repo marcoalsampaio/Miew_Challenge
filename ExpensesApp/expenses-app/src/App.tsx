@@ -14,7 +14,7 @@ export default function App() {
     } else {
       nav("/");
     }
-  }, [loggedIn]);
+  }, [loggedIn, nav]);
 
   return (
     <main>

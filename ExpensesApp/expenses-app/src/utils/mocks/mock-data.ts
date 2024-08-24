@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { AnyTxtRecord } from 'dns';
 import { UserInterface } from '../models';
 import userImage from '../../assets/user_image.jpg'
 export default function applyMockAdapter(axiosInstance: AxiosInstance) {
