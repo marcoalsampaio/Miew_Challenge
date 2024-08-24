@@ -1,0 +1,26 @@
+header {
+    padding-left: 1rem;
+}
+
+
+.container {
+    margin-top: 1rem;
+    width: 30%;
+    padding: 2rem;
+    flex-direction: column;
+    display: flex;
+}
+
+.title{
+    display: flex;
+}
+
+h1{
+    margin-block: 0;
+    text-align: start;
+}
+
+h4 {
+    margin-block-start: 1rem;
+    font-weight: 400;
+}
