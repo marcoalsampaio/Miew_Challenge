@@ -1,0 +1,12 @@
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.amountTypeContainer {
+    display: flex;
+    flex-direction: row;
+}
+
