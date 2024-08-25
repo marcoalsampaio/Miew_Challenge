@@ -1,4 +1,6 @@
 import { OptionInterface } from "../../models";
+import { v4 as uuidv4 } from "uuid";
+
 import styles from "../input-transaction/input-transaction.module.css";
 interface SelectTransactionProps {
   id: string;
@@ -14,7 +16,7 @@ export default function SelectTransaction({
   options,
 }: SelectTransactionProps) {
   const optionList = options.map((option) => (
-    <option value={option.value}>{option.name}</option>
+    <option key={uuidv4()} value={option.value}>{option.name}</option>
   ));
 
   return (

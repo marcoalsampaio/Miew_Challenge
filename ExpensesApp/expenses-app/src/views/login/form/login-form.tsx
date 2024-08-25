@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PrimaryButton from "../../../utils/components/primary-button/primary-button";
 import axiosInstance from "../../../utils/mocks/axios";
 import { useNavigate } from "react-router-dom";
-import { UserInterface } from "../../../utils/models";
 import InputTransaction from "../../../utils/components/input-transaction/input-transaction";
 
 const formError = {
@@ -13,10 +12,9 @@ const formError = {
 
 interface LoginFormProps {
   setLoggedIn: (value: boolean) => void;
-  setUser: (user: UserInterface) => void;
 }
 
-export default function LoginForm({ setLoggedIn, setUser }: LoginFormProps) {
+export default function LoginForm({ setLoggedIn }: LoginFormProps) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -60,8 +58,8 @@ export default function LoginForm({ setLoggedIn, setUser }: LoginFormProps) {
       .then((response: any) => {
         console.log("Login response:", response.data);
         if (response.data.isLoggedIn) {
+          localStorage.setItem('loggedIn', "true");
           setLoggedIn(true);
-          setUser(response.data.user);
           navigate("dashboard");
         } else {
           setErrorFormData(() => formError.wrongEmailOrPassword);
@@ -98,7 +96,7 @@ export default function LoginForm({ setLoggedIn, setUser }: LoginFormProps) {
       {!!errorFormData ? <span style={{ color: "red", height: "1rem", lineHeight: "1rem" }}>{errorFormData}</span> : <div style={{height: "1.5rem"}}></div> }
       
 
-      <PrimaryButton label={"Login"} onClick={onSubmit} />
+      <PrimaryButton label={"Login"} onClick={onSubmit}/>
     </>
   );
 }

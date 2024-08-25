@@ -3,17 +3,15 @@ import logo from "../../assets/expenses_logo.png";
 import { useEffect } from "react";
 import LoginForm from "./form/login-form";
 import { useNavigate } from "react-router-dom";
-import { UserInterface } from "../../utils/models";
 
 
 interface LoginProps {
   loggedIn: boolean;
-  setLoggedIn: (value: boolean)=> void;
-  setUser: (user: UserInterface) => void;
+  setLoggedIn: (value: boolean)=> void
 }
 
 
-export default function Login({loggedIn, setLoggedIn, setUser}: LoginProps) {
+export default function Login({loggedIn, setLoggedIn}: LoginProps) {
 
   const navigate = useNavigate();
   useEffect (() => {
@@ -22,7 +20,7 @@ export default function Login({loggedIn, setLoggedIn, setUser}: LoginProps) {
 
   return (
     <main>
-      <header>
+      <header style={{paddingLeft: "1rem"}}>
         <h3>Expenses App</h3>
       </header>
       <body
@@ -44,7 +42,7 @@ export default function Login({loggedIn, setLoggedIn, setUser}: LoginProps) {
             Start by login into your account and track every cent that you spend
             and earn.
           </h4>
-          <LoginForm setLoggedIn={setLoggedIn} setUser={setUser}/>
+          <LoginForm setLoggedIn={setLoggedIn}/>
         </div>
       </body>
     </main>

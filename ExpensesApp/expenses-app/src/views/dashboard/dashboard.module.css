@@ -1,16 +1,4 @@
 
-.header{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #ffffff9f;
-}
-
-.leaveButton{
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
 section{
     display: flex;
     justify-content: center;

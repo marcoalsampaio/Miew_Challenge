@@ -19,4 +19,9 @@ interface OptionInterface {
     name: string;
   }
 
-export type {TransactionInterface, UserInterface, OptionInterface};
+  interface ViewProps {
+    setLoggedIn: (value: boolean) => void;
+  }
+  
+
+export type {TransactionInterface, UserInterface, OptionInterface, ViewProps};
