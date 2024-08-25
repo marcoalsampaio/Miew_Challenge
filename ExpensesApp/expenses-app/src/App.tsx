@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import Login from "./views/login/Login";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Dashboard from "./views/dashboard/dashboard";
-import { UserInterface } from "./utils/models";
+import History from "./views/history/history";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState<UserInterface | null>(null);
   const nav = useNavigate();
   useEffect(() => {
-    if (loggedIn) {
-      nav("dashboard");
+    if(localStorage.getItem('loggedIn') === "true" || loggedIn ) {
+      setLoggedIn(true);
     } else {
       nav("/");
     }
@@ -21,15 +20,15 @@ export default function App() {
       <Routes>
         <Route
           path="/"
-          element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />}
+          element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
         />
         <Route
           path="/dashboard"
-          element={<Dashboard loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} />}
+          element={<Dashboard setLoggedIn={setLoggedIn}/>}
         />
         <Route
           path="/history"
-          element={<Dashboard loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} />}
+          element={<History setLoggedIn={setLoggedIn}/>}
         />
       </Routes>
       <footer
