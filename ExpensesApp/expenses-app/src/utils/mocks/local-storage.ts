@@ -52,5 +52,28 @@ export default function LocalStorageService() {
         return user;
     }
 
-    return { setTransaction, getTransactions, getBalance, getUser, getLast5Transactions}
+    const getFilteredTransactions = (type: string, value: string) =>{
+        const transactionsList = getTransactions();
+
+        if (transactionsList.length === 0) return [];
+       
+        return filterByDate(transactionsList, value);
+    }
+
+
+    const filterByDate = (list: TransactionInterface[], value: string) => {
+        return list.sort((a, b) => {
+            if (value === 'NEW') {
+                // Sort by newest first (descending)
+                return b.date.getTime() - a.date.getTime();
+            } else if (value === 'OLD') {
+                // Sort by oldest first (ascending)
+                return a.date.getTime() - b.date.getTime();
+            }
+            return 0; // No sorting if the value is neither 'NEW' nor 'OLD'
+        });
+    };
+    
+
+    return { setTransaction, getTransactions, getBalance, getUser, getLast5Transactions, getFilteredTransactions}
 }

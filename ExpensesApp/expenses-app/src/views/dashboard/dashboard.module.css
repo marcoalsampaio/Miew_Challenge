@@ -4,13 +4,13 @@ section{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 
 .informationContainer{
     display: flex;
     justify-content: space-between;
-    width: 23rem;
+    width: 30rem;
 }
 
 .accountBalance {
@@ -18,11 +18,12 @@ section{
     background-color: #ffffff9f;
     box-shadow: 0px 2px 5px 1px rgb(154, 154, 154);
     border-radius: 0.5rem;
-    width: fit-content;
+    width: 10rem;
     padding: 0.5rem;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin-top: 0.5rem ;
 }
 
 .accountBalance span:last-child{
@@ -35,7 +36,7 @@ section{
     background-color: #ffffff9f;
     box-shadow: 0px 2px 5px 1px rgb(154, 154, 154);
     border-radius: 0.5rem;
-    width: 22rem;
+    width: 29rem;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
@@ -50,4 +51,25 @@ section{
     width: 100%;
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+    section{
+        margin-top: 0;
+    }
+    .informationContainer {
+        width: 100%;
+    }
+    .last5Container {
+        width: 90vw; 
+    }
+    .accountBalance {
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+    }
+    .accountBalance span:last-child{
+        font-size: 1rem;
+        font-weight: bold;
+    }
 }

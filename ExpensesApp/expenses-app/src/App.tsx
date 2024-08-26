@@ -31,16 +31,6 @@ export default function App() {
           element={<History setLoggedIn={setLoggedIn}/>}
         />
       </Routes>
-      <footer
-        style={{
-          position: "absolute",
-          bottom: 0,
-          right: 0,
-          padding: "1rem",
-        }}
-      >
-        Developed by Marco Sampaio
-      </footer>
     </main>
   );
 }

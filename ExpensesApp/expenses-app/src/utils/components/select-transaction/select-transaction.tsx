@@ -5,6 +5,7 @@ import styles from "../input-transaction/input-transaction.module.css";
 interface SelectTransactionProps {
   id: string;
   label: string;
+  value: string;
   onChange: (name: string, value: string) => void;
   options: OptionInterface[];
 }
@@ -14,6 +15,7 @@ export default function SelectTransaction({
   label,
   onChange,
   options,
+  value,
 }: SelectTransactionProps) {
   const optionList = options.map((option) => (
     <option key={uuidv4()} value={option.value}>{option.name}</option>
@@ -26,6 +28,7 @@ export default function SelectTransaction({
         style={{width: "100%"}}
         className={styles.input}
         id={id}
+        value={value}
         onChange={(event) => onChange("type", event.target.value)}
       >
         {optionList}
