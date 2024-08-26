@@ -68,11 +68,12 @@ export default function ExpensesModal({
   };
 
   const addTransaction = () => {
+    console.log(new Date(Date.parse(transaction.date)));
     const t: TransactionInterface = {
       uuid: uuidv4(),
       name: transaction.description,
       value: Number(transaction.amount),
-      date: new Date(),
+      date: new Date(Date.parse(transaction.date)),
       type: transaction.type === "ADD" ? "ADD" : "SUB",
     };
     if (verifyTransaction()) {
@@ -115,6 +116,7 @@ export default function ExpensesModal({
               label="Type"
               id="type"
               onChange={handleChange}
+              value={transaction.date}
               options={optionsList}
             />
           </div>

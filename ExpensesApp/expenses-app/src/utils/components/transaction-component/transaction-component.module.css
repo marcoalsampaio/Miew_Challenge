@@ -28,5 +28,20 @@
 }
 
 .transactionValue {
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.dateValue{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
     padding-right: 1rem;
+}
+
+.transactionDate {
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
 }
