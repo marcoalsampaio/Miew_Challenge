@@ -25,7 +25,7 @@ export default function History({ setLoggedIn }: ViewProps) {
   }, []);
 
   const transactionList = transactions.map((tran) => (
-    <TransactionComponent key={tran.uuid} transaction={tran} />
+    <TransactionComponent key={tran.uuid} transaction={tran} onClick={() => {}} />
   ));
 
   const dateList: OptionInterface[] = [

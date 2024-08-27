@@ -4,7 +4,7 @@ interface TransactionInterface {
     name: string
     type: 'ADD' | 'SUB'
     date: Date
-    
+    createDate: Date
 }
 
 interface UserInterface {
