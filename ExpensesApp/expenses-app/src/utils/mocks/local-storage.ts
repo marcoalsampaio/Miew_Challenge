@@ -10,6 +10,38 @@ export default function LocalStorageService() {
         localStorage.setItem('transactions', JSON.stringify([...transactions]))
     }
 
+    const updateTransaction = (updatedTransaction: TransactionInterface, uuid: string ) => {
+        const transactionsList = getTransactions();
+
+        if (transactionsList.length === 0) return [];
+
+        console.log("UPDATe");
+        const newList = transactionsList.map((transaction) => 
+            transaction.uuid === uuid ? updatedTransaction : transaction
+        );
+
+        localStorage.setItem('transactions', JSON.stringify([...newList]))
+
+        const updatedBalance = calculateSum(newList);
+        
+        localStorage.setItem('balance', updatedBalance.toString())
+        //return updatedBalance;
+        //Calc Balance!
+
+    }
+
+    const calculateSum = (transactions: TransactionInterface[]): number => {
+        return transactions.reduce((sum, transaction) => {
+          if (transaction.type === 'ADD') {
+            return sum + transaction.value;
+          } else if (transaction.type === 'SUB') {
+            return sum - transaction.value;
+          }
+          return sum;
+        }, 0);
+      };
+
+
     const getTransactions = (): TransactionInterface[] => {
 
         const localTransactions = localStorage.getItem('transactions');
@@ -20,7 +52,8 @@ export default function LocalStorageService() {
                 value: Number(item.value),
                 name: item.name,
                 type: item.type,
-                date: new Date(item.date)
+                date: new Date(item.date),
+                createDate: new Date (item.createDate)
             }));
         } else {
             return [];
@@ -32,7 +65,7 @@ export default function LocalStorageService() {
 
         if (transactionsList.length === 0) return [];
         return transactionsList
-            .sort((a, b) => b.date.getTime() - a.date.getTime()) // Sort by date, most recent first
+            .sort((a, b) => b.createDate.getTime() - a.createDate.getTime()) // Sort by date, most recent first
             .slice(0, 5);
 
     }
@@ -75,5 +108,5 @@ export default function LocalStorageService() {
     };
     
 
-    return { setTransaction, getTransactions, getBalance, getUser, getLast5Transactions, getFilteredTransactions}
+    return { setTransaction, getTransactions, getBalance, getUser, getLast5Transactions, getFilteredTransactions, updateTransaction}
 }

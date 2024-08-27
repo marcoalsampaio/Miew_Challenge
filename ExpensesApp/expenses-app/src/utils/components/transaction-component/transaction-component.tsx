@@ -5,16 +5,18 @@ import styles from "./transaction-component.module.css";
 
 interface TransactionComponentProps {
   transaction: TransactionInterface;
+  onClick: () => void;
 }
 
 export default function TransactionComponent({
   transaction,
+  onClick
 }: TransactionComponentProps) {
   const isAdd = transaction.type === "ADD";
 
   return (
     <>
-      <div className={isAdd ? styles.addContainer : styles.subContainer}>
+      <div className={isAdd ? styles.addContainer : styles.subContainer} onClick={onClick}>
         <div style={{ paddingLeft: "1rem" }}>
           {isAdd ? (
             <FaArrowUp style={{ color: "green" }} />

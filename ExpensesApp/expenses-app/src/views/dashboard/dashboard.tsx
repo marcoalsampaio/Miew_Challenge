@@ -15,12 +15,15 @@ interface ViewProps {
 }
 
 export default function Dashboard({ setLoggedIn }: ViewProps) {
-  const { setTransaction, getBalance, getLast5Transactions, getTransactions } =
+  const { setTransaction, getBalance, getLast5Transactions, getTransactions, updateTransaction } =
     LocalStorageService();
   const nav = useNavigate();
 
   const [balance, setBalance] = useState(0);
   const [transactions, setTransactions] = useState<TransactionInterface[]>([]);
+  const [transactionToEdit, setTransactionToEdit] = useState<
+    TransactionInterface | undefined
+  >();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -59,13 +62,27 @@ export default function Dashboard({ setLoggedIn }: ViewProps) {
     closeModal();
   };
 
+  const onEdit = (value: TransactionInterface, uuid: string) => {
+    updateTransaction(value, uuid);
+    getBalanceFromLocal();
+    getTransactionsFromLocal();
+    closeModal();
+  };
+
   const transactionList = transactions.map((tran) => (
-    <TransactionComponent key={tran.uuid} transaction={tran} />
+    <TransactionComponent
+      key={tran.uuid}
+      transaction={tran}
+      onClick={() => {
+        setTransactionToEdit(tran);
+        openModal();
+      }}
+    />
   ));
 
   return (
     <>
-      <HeaderComponent setLoggedIn={setLoggedIn}/>
+      <HeaderComponent setLoggedIn={setLoggedIn} />
       <section>
         <div className={styles.informationContainer}>
           <UserInfo />
@@ -83,7 +100,11 @@ export default function Dashboard({ setLoggedIn }: ViewProps) {
               onClick={openModal}
             />
           </div>
-          {transactions.length === 0 ? <span>Whithout Transactions in your account</span> : transactionList}
+          {transactions.length === 0 ? (
+            <span>Whithout Transactions in your account</span>
+          ) : (
+            transactionList
+          )}
 
           <span onClick={() => nav("/history", {})}>View All</span>
         </div>
@@ -91,8 +112,10 @@ export default function Dashboard({ setLoggedIn }: ViewProps) {
 
       <ExpensesModal
         isOpen={isModalOpen}
+        transactionToEdit={transactionToEdit}
         closeModal={closeModal}
         onSave={onSave}
+        onEdit={onEdit}
       />
     </>
   );

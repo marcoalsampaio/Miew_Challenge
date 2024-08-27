@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputTransaction from "../../utils/components/input-transaction/input-transaction";
 import Modal from "../../utils/components/modal/modal";
 import styles from "./expenses-modal.module.css";
@@ -7,10 +7,14 @@ import SelectTransaction from "../../utils/components/select-transaction/select-
 import PrimaryButton from "../../utils/components/primary-button/primary-button";
 import { v4 as uuidv4 } from "uuid";
 
+//EDIT
+
 interface ExpensesModalProps {
   isOpen: boolean;
   closeModal: () => void;
+  transactionToEdit?: TransactionInterface
   onSave: (value: TransactionInterface) => void;
+  onEdit: (value: TransactionInterface, uuid: string) => void;
 }
 
 const optionsList: OptionInterface[] = [
@@ -28,14 +32,29 @@ export default function ExpensesModal({
   isOpen,
   closeModal,
   onSave,
+  transactionToEdit,
+  onEdit,
+
 }: ExpensesModalProps) {
   const [transaction, setTransaction] = useState({
     description: "",
-    amount: "",
-    date: "",
+    amount:  "",
+    date:   "",
     type: "ADD",
   });
 
+  useEffect(() => {
+    if (transactionToEdit) {
+      setTransaction({
+        description: transactionToEdit.name ?? "",
+        amount: transactionToEdit.value.toString() ?? "",
+        date: transactionToEdit.date.toISOString().split("T")[0] ?? "",
+        type: transactionToEdit.type ?? "ADD",
+      });
+    }
+  }, [transactionToEdit]);
+  
+  console.log(transactionToEdit)
   const [error, setError] = useState("");
 
   const verifyTransaction = () => {
@@ -75,6 +94,30 @@ export default function ExpensesModal({
       value: Number(transaction.amount),
       date: new Date(Date.parse(transaction.date)),
       type: transaction.type === "ADD" ? "ADD" : "SUB",
+      createDate: new Date(),
+    };
+    if (verifyTransaction()) {
+      setTransaction(() => ({
+        uuid: "",
+        description: "",
+        amount: "",
+        date: "",
+        type: "ADD",
+      }));
+      onSave(t);
+    }
+  };
+
+
+  const editTransaction = () => {
+    console.log(new Date(Date.parse(transaction.date)));
+    const t: TransactionInterface = {
+      uuid: transactionToEdit!.uuid,
+      name: transaction.description,
+      value: Number(transaction.amount),
+      date: new Date(Date.parse(transaction.date)),
+      type: transaction.type === "ADD" ? "ADD" : "SUB",
+      createDate: new Date(),
     };
     if (verifyTransaction()) {
       setTransaction(() => ({
@@ -83,7 +126,7 @@ export default function ExpensesModal({
         date: "",
         type: "ADD",
       }));
-      onSave(t);
+      onEdit(t, transactionToEdit!.uuid);
     }
   };
 
@@ -116,7 +159,7 @@ export default function ExpensesModal({
               label="Type"
               id="type"
               onChange={handleChange}
-              value={transaction.date}
+              value={transaction.type}
               options={optionsList}
             />
           </div>
@@ -147,7 +190,7 @@ export default function ExpensesModal({
             <div style={{ height: "1.5rem" }}></div>
           )}
 
-          <PrimaryButton label={"Save"} onClick={addTransaction} />
+          <PrimaryButton label={"Save"} onClick={transactionToEdit ? editTransaction : addTransaction} />
         </div>
       </Modal>
     </>
