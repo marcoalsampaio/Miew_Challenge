@@ -42,6 +42,7 @@ export default function Dashboard({ setLoggedIn }: ViewProps) {
     getBalanceFromLocal();
   }, []);
 
+  //Update balance when new transaction is added
   const updateBalance = (lastTransaction: TransactionInterface) => {
     if (lastTransaction.type === "ADD") {
       const newBalance = balance + lastTransaction.value;
@@ -69,6 +70,12 @@ export default function Dashboard({ setLoggedIn }: ViewProps) {
     closeModal();
   };
 
+  const addNewTransaction  = () => {
+    setTransactionToEdit(undefined);
+    openModal();
+  }
+
+  //Generate the list of the last transactions
   const transactionList = transactions.map((tran) => (
     <TransactionComponent
       key={tran.uuid}
@@ -97,7 +104,7 @@ export default function Dashboard({ setLoggedIn }: ViewProps) {
             <AiOutlinePlusCircle
               size={25}
               style={{ paddingRight: "0.25rem", cursor: "pointer" }}
-              onClick={openModal}
+              onClick={addNewTransaction}
             />
           </div>
           {transactions.length === 0 ? (
@@ -120,10 +127,3 @@ export default function Dashboard({ setLoggedIn }: ViewProps) {
     </>
   );
 }
-
-//TODO
-//Get mock information from json
-//Get data from local storage -> Last 5
-//Colocar modal em componente a parte
-//Criar formulario para adicionar
-//History
