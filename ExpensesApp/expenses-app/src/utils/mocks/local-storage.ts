@@ -10,12 +10,12 @@ export default function LocalStorageService() {
         localStorage.setItem('transactions', JSON.stringify([...transactions]))
     }
 
+    //Update a transaction and calls the function to sum the new updated balance
     const updateTransaction = (updatedTransaction: TransactionInterface, uuid: string ) => {
         const transactionsList = getTransactions();
 
         if (transactionsList.length === 0) return [];
 
-        console.log("UPDATe");
         const newList = transactionsList.map((transaction) => 
             transaction.uuid === uuid ? updatedTransaction : transaction
         );
@@ -25,8 +25,7 @@ export default function LocalStorageService() {
         const updatedBalance = calculateSum(newList);
         
         localStorage.setItem('balance', updatedBalance.toString())
-        //return updatedBalance;
-        //Calc Balance!
+       
 
     }
 
@@ -103,7 +102,7 @@ export default function LocalStorageService() {
                 // Sort by oldest first (ascending)
                 return a.date.getTime() - b.date.getTime();
             }
-            return 0; // No sorting if the value is neither 'NEW' nor 'OLD'
+            return 0;
         });
     };
     

@@ -136,6 +136,13 @@ export default function ExpensesModal({
 
   const onCloseModal = () => {
     setError(() => "");
+    setTransaction(() => ({
+      uuid: "",
+      description: "",
+      amount: "",
+      date: "",
+      type: "ADD",
+    }));
     closeModal();
   };
 
@@ -143,7 +150,7 @@ export default function ExpensesModal({
     <>
       <Modal isOpen={isOpen} onClose={onCloseModal}>
         <div className={styles.container}>
-          <h2>New Transaction</h2>
+          <h2>{transactionToEdit ? "Edit " : "New "}Transaction</h2>
 
           <div className={styles.amountTypeContainer}>
             <InputTransaction

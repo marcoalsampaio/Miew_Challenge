@@ -9,8 +9,6 @@ export default function applyMockAdapter(axiosInstance: AxiosInstance) {
   mock.onPost('/login').reply((config: any) => {
     const requestData = JSON.parse(config.data)
     
-    return [200, { isLoggedIn: true}]
-
     if (requestData.email === "silmaia@gmail.com" && requestData.password === "Seguro123") return [200, {
       isLoggedIn: true,
     }];
