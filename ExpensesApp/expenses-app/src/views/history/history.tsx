@@ -7,7 +7,6 @@ import {
 import TransactionComponent from "../../utils/components/transaction-component/transaction-component";
 import LocalStorageService from "../../utils/mocks/local-storage";
 import styles from "./history.module.css";
-import { useNavigate } from "react-router-dom";
 import HeaderComponent from "../../utils/components/header/header";
 import SelectTransaction from "../../utils/components/select-transaction/select-transaction";
 
@@ -25,7 +24,11 @@ export default function History({ setLoggedIn }: ViewProps) {
   }, []);
 
   const transactionList = transactions.map((tran) => (
-    <TransactionComponent key={tran.uuid} transaction={tran} onClick={() => {}} />
+    <TransactionComponent
+      key={tran.uuid}
+      transaction={tran}
+      onClick={() => {}}
+    />
   ));
 
   const dateList: OptionInterface[] = [
@@ -41,7 +44,7 @@ export default function History({ setLoggedIn }: ViewProps) {
 
   const handleChange = (name: string, value: string) => {
     setSelectedValue(() => value);
-    setTransactions( () => getFilteredTransactions(name, value));
+    setTransactions(() => getFilteredTransactions(name, value));
   };
 
   return (
@@ -49,7 +52,7 @@ export default function History({ setLoggedIn }: ViewProps) {
       <HeaderComponent setLoggedIn={setLoggedIn} goBack={true} />
       <section>
         <div className={styles.main}>
-          <h3 style={{margin: 0}}>Transactions History</h3>
+          <h3 style={{ margin: 0 }}>Transactions History</h3>
           <div className={styles.filter}>
             <SelectTransaction
               label="Date"

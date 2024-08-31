@@ -2,20 +2,14 @@ import { useEffect, useState } from "react";
 import InputTransaction from "../../utils/components/input-transaction/input-transaction";
 import Modal from "../../utils/components/modal/modal";
 import styles from "./expenses-modal.module.css";
-import { OptionInterface, TransactionInterface } from "../../utils/models";
+import {
+  ExpensesModalProps,
+  OptionInterface,
+  TransactionInterface,
+} from "../../utils/models";
 import SelectTransaction from "../../utils/components/select-transaction/select-transaction";
 import PrimaryButton from "../../utils/components/primary-button/primary-button";
 import { v4 as uuidv4 } from "uuid";
-
-//EDIT
-
-interface ExpensesModalProps {
-  isOpen: boolean;
-  closeModal: () => void;
-  transactionToEdit?: TransactionInterface
-  onSave: (value: TransactionInterface) => void;
-  onEdit: (value: TransactionInterface, uuid: string) => void;
-}
 
 const optionsList: OptionInterface[] = [
   {
@@ -34,12 +28,11 @@ export default function ExpensesModal({
   onSave,
   transactionToEdit,
   onEdit,
-
 }: ExpensesModalProps) {
   const [transaction, setTransaction] = useState({
     description: "",
-    amount:  "",
-    date:   "",
+    amount: "",
+    date: "",
     type: "ADD",
   });
 
@@ -53,8 +46,8 @@ export default function ExpensesModal({
       });
     }
   }, [transactionToEdit]);
-  
-  console.log(transactionToEdit)
+
+  console.log(transactionToEdit);
   const [error, setError] = useState("");
 
   const verifyTransaction = () => {
@@ -107,7 +100,6 @@ export default function ExpensesModal({
       onSave(t);
     }
   };
-
 
   const editTransaction = () => {
     console.log(new Date(Date.parse(transaction.date)));
@@ -197,7 +189,10 @@ export default function ExpensesModal({
             <div style={{ height: "1.5rem" }}></div>
           )}
 
-          <PrimaryButton label={"Save"} onClick={transactionToEdit ? editTransaction : addTransaction} />
+          <PrimaryButton
+            label={"Save"}
+            onClick={transactionToEdit ? editTransaction : addTransaction}
+          />
         </div>
       </Modal>
     </>

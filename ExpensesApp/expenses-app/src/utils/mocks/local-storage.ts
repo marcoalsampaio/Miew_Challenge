@@ -11,34 +11,34 @@ export default function LocalStorageService() {
     }
 
     //Update a transaction and calls the function to sum the new updated balance
-    const updateTransaction = (updatedTransaction: TransactionInterface, uuid: string ) => {
+    const updateTransaction = (updatedTransaction: TransactionInterface, uuid: string) => {
         const transactionsList = getTransactions();
 
         if (transactionsList.length === 0) return [];
 
-        const newList = transactionsList.map((transaction) => 
+        const newList = transactionsList.map((transaction) =>
             transaction.uuid === uuid ? updatedTransaction : transaction
         );
 
         localStorage.setItem('transactions', JSON.stringify([...newList]))
 
         const updatedBalance = calculateSum(newList);
-        
+
         localStorage.setItem('balance', updatedBalance.toString())
-       
+
 
     }
 
     const calculateSum = (transactions: TransactionInterface[]): number => {
         return transactions.reduce((sum, transaction) => {
-          if (transaction.type === 'ADD') {
-            return sum + transaction.value;
-          } else if (transaction.type === 'SUB') {
-            return sum - transaction.value;
-          }
-          return sum;
+            if (transaction.type === 'ADD') {
+                return sum + transaction.value;
+            } else if (transaction.type === 'SUB') {
+                return sum - transaction.value;
+            }
+            return sum;
         }, 0);
-      };
+    };
 
 
     const getTransactions = (): TransactionInterface[] => {
@@ -52,7 +52,7 @@ export default function LocalStorageService() {
                 name: item.name,
                 type: item.type,
                 date: new Date(item.date),
-                createDate: new Date (item.createDate)
+                createDate: new Date(item.createDate)
             }));
         } else {
             return [];
@@ -84,11 +84,11 @@ export default function LocalStorageService() {
         return user;
     }
 
-    const getFilteredTransactions = (type: string, value: string) =>{
+    const getFilteredTransactions = (type: string, value: string) => {
         const transactionsList = getTransactions();
 
         if (transactionsList.length === 0) return [];
-       
+
         return filterByDate(transactionsList, value);
     }
 
@@ -105,7 +105,7 @@ export default function LocalStorageService() {
             return 0;
         });
     };
-    
 
-    return { setTransaction, getTransactions, getBalance, getUser, getLast5Transactions, getFilteredTransactions, updateTransaction}
+
+    return { setTransaction, getTransactions, getBalance, getUser, getLast5Transactions, getFilteredTransactions, updateTransaction }
 }

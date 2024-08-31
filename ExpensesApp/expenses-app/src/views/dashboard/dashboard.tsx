@@ -1,8 +1,7 @@
 import TransactionComponent from "../../utils/components/transaction-component/transaction-component";
 import UserInfo from "../../utils/components/user-info/user-info";
-import { TransactionInterface } from "../../utils/models";
+import { TransactionInterface, ViewProps } from "../../utils/models";
 import styles from "./dashboard.module.css";
-import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -10,13 +9,14 @@ import ExpensesModal from "../expenses/expenses-modal";
 import LocalStorageService from "../../utils/mocks/local-storage";
 import HeaderComponent from "../../utils/components/header/header";
 
-interface ViewProps {
-  setLoggedIn: (value: boolean) => void;
-}
-
 export default function Dashboard({ setLoggedIn }: ViewProps) {
-  const { setTransaction, getBalance, getLast5Transactions, getTransactions, updateTransaction } =
-    LocalStorageService();
+  const {
+    setTransaction,
+    getBalance,
+    getLast5Transactions,
+    getTransactions,
+    updateTransaction,
+  } = LocalStorageService();
   const nav = useNavigate();
 
   const [balance, setBalance] = useState(0);
@@ -70,10 +70,10 @@ export default function Dashboard({ setLoggedIn }: ViewProps) {
     closeModal();
   };
 
-  const addNewTransaction  = () => {
+  const addNewTransaction = () => {
     setTransactionToEdit(undefined);
     openModal();
-  }
+  };
 
   //Generate the list of the last transactions
   const transactionList = transactions.map((tran) => (

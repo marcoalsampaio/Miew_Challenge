@@ -1,4 +1,4 @@
-.main{
+.main {
     background-color: rgb(255, 255, 255);
     width: 32rem;
     border-radius: 0.5rem;
@@ -11,21 +11,24 @@
     section {
         margin-top: 0;
     }
+
     .main {
-        width: 100%; /* Adjust width for smaller screens */
-        padding: 0.5rem; /* Adjust padding for smaller screens */
+        width: 100%;
+        /* Adjust width for smaller screens */
+        padding: 0.5rem;
+        /* Adjust padding for smaller screens */
     }
 }
 
 
-.filter{
+.filter {
     display: flex;
     padding-inline: 0.5rem;
     gap: 1.5rem;
 }
 
 
-.listFather{
+.listFather {
     height: 30rem;
     padding-top: 2rem;
     padding-inline: 0.5rem;

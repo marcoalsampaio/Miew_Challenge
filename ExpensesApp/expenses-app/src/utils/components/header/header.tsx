@@ -1,7 +1,6 @@
 import { FaArrowLeft, FaArrowRightFromBracket } from "react-icons/fa6";
 import styles from "./header.module.css";
 import { useNavigate } from "react-router-dom";
-import { ViewProps } from "../../models";
 
 interface HeaderProps {
   setLoggedIn: (value: boolean) => void;

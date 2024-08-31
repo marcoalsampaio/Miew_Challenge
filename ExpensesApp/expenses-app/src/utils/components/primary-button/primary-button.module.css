@@ -1,5 +1,4 @@
-
-.alignCenter{
+.alignCenter {
 	display: flex;
 	justify-content: center;
 	margin-top: 1rem;
@@ -7,20 +6,20 @@
 
 
 .button {
-    padding-block: 1rem;
-    background: #82a493;
+	padding-block: 1rem;
+	background: #82a493;
 	color: inherit;
 	border: none;
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-    border-radius: 0.5rem;
-    width: 200px;
+	border-radius: 0.5rem;
+	width: 200px;
 	color: white;
 	font-weight: bold;
 	font-size: large;
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 	box-shadow: 0px 1px 10px 1px rgb(179, 179, 179);
 }
 

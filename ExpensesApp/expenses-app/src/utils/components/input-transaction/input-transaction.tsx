@@ -19,11 +19,14 @@ export default function InputTransaction({
 }: InputProps) {
   return (
     <div className={styles.container}>
-      <label htmlFor={id} style={{ color: error? "red" : "#52826a", fontWeight: "bold" }}>
+      <label
+        htmlFor={id}
+        style={{ color: error ? "red" : "#52826a", fontWeight: "bold" }}
+      >
         {label}
       </label>
       <input
-        style={{ borderColor: error ? "red" : "#BEC9C2"}}
+        style={{ borderColor: error ? "red" : "#BEC9C2" }}
         type={type}
         className={styles.input}
         id={id}

@@ -1,20 +1,23 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
 }
 
 .input {
-    padding: 0.5rem 0.5rem;
-    font-size: 1.25rem;
-    border: 1px solid #BEC9C2; /* Ensure the border is defined */
-    outline: none; /* Remove default outline if needed */
-    border-radius: 0.5rem;
-    margin: 1px;
-  }
-  
-  .input:focus {
-    margin: 0;
-    border-width: 2px;
-    border-color: #82A493; /* This will now apply when the input is focused */
-  }
+  padding: 0.5rem 0.5rem;
+  font-size: 1.25rem;
+  border: 1px solid #BEC9C2;
+  /* Ensure the border is defined */
+  outline: none;
+  /* Remove default outline if needed */
+  border-radius: 0.5rem;
+  margin: 1px;
+}
+
+.input:focus {
+  margin: 0;
+  border-width: 2px;
+  border-color: #82A493;
+  /* This will now apply when the input is focused */
+}
