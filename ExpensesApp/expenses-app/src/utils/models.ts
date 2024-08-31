@@ -19,9 +19,21 @@ interface OptionInterface {
     name: string;
   }
 
-  interface ViewProps {
-    setLoggedIn: (value: boolean) => void;
-  }
-  
+interface ViewProps {
+  setLoggedIn: (value: boolean) => void;
+}
 
-export type {TransactionInterface, UserInterface, OptionInterface, ViewProps};
+interface ExpensesModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
+  transactionToEdit?: TransactionInterface
+  onSave: (value: TransactionInterface) => void;
+  onEdit: (value: TransactionInterface, uuid: string) => void;
+}
+
+interface LoginProps {
+  loggedIn: boolean;
+  setLoggedIn: (value: boolean)=> void
+}
+
+export type {TransactionInterface, UserInterface, OptionInterface, ViewProps, ExpensesModalProps, LoginProps};

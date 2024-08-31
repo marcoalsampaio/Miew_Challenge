@@ -33,7 +33,7 @@
     margin: 0;
 }
 
-.dateValue{
+.dateValue {
     display: flex;
     flex-direction: column;
     align-items: end;

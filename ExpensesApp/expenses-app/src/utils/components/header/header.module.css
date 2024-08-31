@@ -1,4 +1,4 @@
-.header{
+.header {
     width: 100vw;
     background-color: #ffffff9f;
     display: flex;
@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 
-.leaveButton{
+.leaveButton {
     cursor: pointer;
     padding: 0.5rem;
 }

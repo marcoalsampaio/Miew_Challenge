@@ -18,14 +18,18 @@ export default function SelectTransaction({
   value,
 }: SelectTransactionProps) {
   const optionList = options.map((option) => (
-    <option key={uuidv4()} value={option.value}>{option.name}</option>
+    <option key={uuidv4()} value={option.value}>
+      {option.name}
+    </option>
   ));
 
   return (
     <div className={styles.container}>
-      <label style={{ color:"#52826a", fontWeight: "bold" }} htmlFor="type">{label}</label>
+      <label style={{ color: "#52826a", fontWeight: "bold" }} htmlFor="type">
+        {label}
+      </label>
       <select
-        style={{width: "100%"}}
+        style={{ width: "100%" }}
         className={styles.input}
         id={id}
         value={value}

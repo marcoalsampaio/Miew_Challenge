@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PrimaryButton from "../../../utils/components/primary-button/primary-button";
 import axiosInstance from "../../../utils/mocks/axios";
 import { useNavigate } from "react-router-dom";
 import InputTransaction from "../../../utils/components/input-transaction/input-transaction";
+import { ViewProps } from "../../../utils/models";
 
 const formError = {
   required: "All the fields are required",
@@ -10,11 +11,7 @@ const formError = {
   wrongEmailOrPassword: "Email or Password are wrong, please try again",
 };
 
-interface LoginFormProps {
-  setLoggedIn: (value: boolean) => void;
-}
-
-export default function LoginForm({ setLoggedIn }: LoginFormProps) {
+export default function LoginForm({ setLoggedIn }: ViewProps) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -58,7 +55,7 @@ export default function LoginForm({ setLoggedIn }: LoginFormProps) {
       .then((response: any) => {
         console.log("Login response:", response.data);
         if (response.data.isLoggedIn) {
-          localStorage.setItem('loggedIn', "true");
+          localStorage.setItem("loggedIn", "true");
           setLoggedIn(true);
           navigate("dashboard");
         } else {
@@ -93,10 +90,15 @@ export default function LoginForm({ setLoggedIn }: LoginFormProps) {
         onChange={handleChange}
       />
 
-      {!!errorFormData ? <span style={{ color: "red", height: "1rem", lineHeight: "1rem" }}>{errorFormData}</span> : <div style={{height: "1.5rem"}}></div> }
-      
+      {!!errorFormData ? (
+        <span style={{ color: "red", height: "1rem", lineHeight: "1rem" }}>
+          {errorFormData}
+        </span>
+      ) : (
+        <div style={{ height: "1.5rem" }}></div>
+      )}
 
-      <PrimaryButton label={"Login"} onClick={onSubmit}/>
+      <PrimaryButton label={"Login"} onClick={onSubmit} />
     </>
   );
 }

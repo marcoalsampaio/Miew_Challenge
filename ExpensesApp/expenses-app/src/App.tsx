@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./views/login/Login";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Dashboard from "./views/dashboard/dashboard";
@@ -8,7 +8,7 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const nav = useNavigate();
   useEffect(() => {
-    if(localStorage.getItem('loggedIn') === "true" || loggedIn ) {
+    if (localStorage.getItem("loggedIn") === "true" || loggedIn) {
       setLoggedIn(true);
     } else {
       nav("/");
@@ -24,11 +24,11 @@ export default function App() {
         />
         <Route
           path="/dashboard"
-          element={<Dashboard setLoggedIn={setLoggedIn}/>}
+          element={<Dashboard setLoggedIn={setLoggedIn} />}
         />
         <Route
           path="/history"
-          element={<History setLoggedIn={setLoggedIn}/>}
+          element={<History setLoggedIn={setLoggedIn} />}
         />
       </Routes>
     </main>
